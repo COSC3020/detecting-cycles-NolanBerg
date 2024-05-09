@@ -36,13 +36,19 @@ function hasCycle(graph) {
     });
 
     const uf = new UnionFind(nodes.length);
+    const visitedEdges = new Set();
 
     for (const node of nodes) {
         for (const neighbor of Object.keys(graph[node])) {
             const nodeIdx = nodeIndex.get(node);
             const neighborIdx = nodeIndex.get(neighbor);
-
+            const edge = [nodeIdx, neighborIdx].sort().join('-');
+            if (visitedEdges.has(edge)) {
+                continue;
+            }
+            visitedEdges.add(edge);
             if (uf.find(nodeIdx) === uf.find(neighborIdx)) {
+                console.log(`Cycle detected: ${node} - ${neighbor}`);
                 return true;
             }
             uf.union(nodeIdx, neighborIdx);
