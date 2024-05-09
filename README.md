@@ -16,3 +16,21 @@ the function and run automatically when you commit through a GitHub action.
 
 What is the worst-case big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+
+Sources: Used ai for code and runtime analysis
+
+Initializing the parent and rank arrays takes $O(V)$
+
+The find and operation uses path compression, with a time complexity of $O(\alpha(V))$, where $\alpha$ is the inverse Ackermann function. 
+
+The union operation uses union by rank, which also has a time complexity of $O(\alpha(V))$.
+
+If number of edges is $E$, the function will perform at most $E$ find and union operations.
+
+The function has a set to keep track of visited edges, which ensures each edge is processed once. Adding and checking for an edge takes $O(1)$ time.
+
+The total time complexity is dominated by the $E$ find and union operations, each of which takes $O(\alpha(V))$ time in the worst case.
+
+Therefore, the total worst case time complexity is $\Theta(E \cdot \alpha(V))$
+
+
